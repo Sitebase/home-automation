@@ -19,6 +19,10 @@ Want to compile/use native modules then install node-gyp:
 
 	npm install -g node-gyp
 
+Run
+---
+node src --modules webapp,embedded,gpio
+
 Raspberry console screen sleep
 ------------------------------
 To wake the screen over SSH you can use following commands:

@@ -18,7 +18,9 @@
     "mqtt": "*",
     "color": "latest",
     "lodash": "latest",
-    "gpio": "latest"
+    "onoff": "latest",
+    "stdio": "latest",
+    "node-remote-events": "git+https://github.com/Sitebase/node-remote-events.git"
   },
   "scripts": {
     "start": "NODE_PATH=`pwd`/lib node run.js",
