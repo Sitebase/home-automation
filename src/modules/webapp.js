@@ -31,7 +31,7 @@ app.use(express.static(__dirname + '/../public'));
 app.use( bodyParser.json() ); // to support JSON-encoded bodies for POST request
 app.use( bodyParser.urlencoded() );
 app.get('/', function(req, res){
-	res.sendfile('src/index.html');
+	res.sendfile('src/indesx.html');
 });
 
 /**
