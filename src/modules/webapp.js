@@ -1,9 +1,9 @@
-var express = require('express');
-var app = express();
-var socketio = require('socket.io');
-var logger = require('../lib/logger');
-var _sandbox = null;
-var bodyParser = require('body-parser')
+var express = require('express'),
+	app = express();
+	socketio = require('socket.io'),
+	logger = require('../lib/logger'),
+	bodyParser = require('body-parser'),
+	_sandbox = null;
 
 function WebApp( sandbox, options ) {
 	_sandbox = sandbox;
