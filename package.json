@@ -20,6 +20,7 @@
     "lodash": "latest",
     "onoff": "latest",
     "stdio": "latest",
+    "body-parser": "latest",
     "node-remote-events": "git+https://github.com/Sitebase/node-remote-events.git"
   },
   "scripts": {

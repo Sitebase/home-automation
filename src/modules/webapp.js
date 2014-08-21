@@ -3,6 +3,7 @@ var app = express();
 var socketio = require('socket.io');
 var logger = require('../lib/logger');
 var _sandbox = null;
+var bodyParser = require('body-parser')
 
 function WebApp( sandbox, options ) {
 	_sandbox = sandbox;
@@ -25,9 +26,51 @@ function WebApp( sandbox, options ) {
 	});
 }
 
+app.disable('etag'); // Disable caching otherwise the API endpoint don't work if you test them in a regular browser
 app.use(express.static(__dirname + '/../public'));
+app.use( bodyParser.json() ); // to support JSON-encoded bodies for POST request
+app.use( bodyParser.urlencoded() );
 app.get('/', function(req, res){
 	res.sendfile('src/index.html');
 });
+
+/**
+ * Add GET endpoint to trigger an event by using
+ * a regular HTTP request
+ *
+ * @example curl -X GET -d 'trigger=test&type=click' -s http://localhost:3000/api
+ */
+app.get('/api', function(req, res){
+	res.setHeader('content-type', 'text/json');
+
+	if( isValidEvent(req.query) ) {
+		_sandbox.emit('message', req.query);
+		res.send('{"status": "ok"}');
+	} else {
+		res.send('{"status": "error"}');
+	}
+});
+
+/**
+ * Add GET endpoint to trigger an event by using
+ * a regular HTTP request
+ *
+ * @example curl -X POST -s http://localhost:3000/api?trigger=test&type=click
+ */
+app.post('/api', function(req, res){
+	res.setHeader('content-type', 'text/json');
+	
+	if( isValidEvent(req.query) ) {
+		_sandbox.emit('message', req.query);
+		res.send('{"status": "ok"}');
+	} else {
+		res.send('{"status": "error"}');
+	}
+});
+
+// @todo move this to a helper lib so we can use it also on other places
+function isValidEvent( event ) {
+	return (event.hasOwnProperty('trigger') && event.hasOwnProperty('type')) ? true : false;
+}
 
 module.exports = WebApp;

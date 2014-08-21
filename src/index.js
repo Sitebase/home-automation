@@ -26,6 +26,8 @@ if( _.contains(ops.modules, 'gpio') )
 if( _.contains(ops.modules, 'xbmc') )
 	var xbmc = new require('./modules/xbmc')(sandbox, {});
 
+if( _.contains(ops.modules, 'openwrt') )
+	var xbmc = new require('./modules/openwrt')(sandbox, {});
 
 sandbox.on('message', function( data ) {
 	logger.debug('Sandbox received event:', data);
