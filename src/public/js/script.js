@@ -7,11 +7,10 @@
 	socket.emit('message', { my: 'data' });
 	}*/
 
-	$('[data-trigger]').on('dblclick', function(e) {
+	$('[data-trigger]').on('click', function(e) {
 		var data = $(this).data();
 		data.loation = 'mobile';
-		data.type = 'dblclick';
-		console.log('Button double click', data);
+		data.type = 'click';
 		socket.emit('message', data);
 	});
 
