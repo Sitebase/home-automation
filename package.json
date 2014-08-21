@@ -1,0 +1,29 @@
+{
+  "name": "pomo-node",
+  "version": "0.0.1",
+  "description": "NodeJS daemon for controller domotica using I2C",
+  "author": {
+    "name": "Wim Mostmans",
+    "email": "wim@sitebase.be"
+  },
+  "keywords": [
+    "domotica",
+    "home automation"
+  ],
+  "dependencies": {
+    "forever": "*",
+    "colors": "*",
+    "express": "*",
+    "socket.io": "*",
+    "mqtt": "*",
+    "color": "latest",
+    "lodash": "latest",
+    "gpio": "latest"
+  },
+  "scripts": {
+    "start": "NODE_PATH=`pwd`/lib node run.js",
+    "test": "NODE_PATH=`pwd`/lib node tests/mqtt-pub.js"
+  },
+  "license": "MIT",
+  "engine": "node >= v0.10.*"
+}
