@@ -14,14 +14,16 @@ function XBMC( sandbox, options ) {
 	logger.debug('Start module XBMC');
 	
 	remote.connect({
-		host: '54.164.43.98',
+		host: '192.168.1.108',
 		port: 22,
-		username: 'ubuntu',
-		privateKey: require('fs').readFileSync('/Users/wim/.ssh/Red5.pem'),
+		username: 'wim',
+		password: '****',
+		monitorCmd: 'tail -f /home/wim/.xbmc/temp/xbmc.log',
 		events: {
-			'movie.play': '[mM]ovie',
-			'audio.play': 'audio',
-			'login': 'Accepted publickey'
+			'movie.play': 'DVDPlayer\: Opening\:',
+			'movie.stop': 'thread end\: video_thread',
+			//'audio.play': 'audio',
+			//'login': 'Accepted publickey'
 		}
 	}).done( listen );
 
@@ -34,6 +36,9 @@ function XBMC( sandbox, options ) {
 function listen( connection ) {
 	connection.on('movie.play', function( line ) {
 		trigger( 'movie.play' );
+	});
+	connection.on('movie.stop', function( line ) {
+		trigger( 'movie.stop' );
 	});
 	connection.on('audio.play', function( line ) {
 		trigger( 'audio.play' );

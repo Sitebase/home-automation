@@ -13,13 +13,19 @@ function WebApp( sandbox, options ) {
 	    logger.debug('Webapp Listening on port', server.address().port);
 	});
 
-
 	var io = socketio.listen(server, {'log level': 0}).on('connection', function (socket) {
 		socket = socket;
 		socket.on('message', function (json) {
 			logger.debug('Message from webapp:', json);
 			_sandbox.emit('message', json);
 	    });
+
+	    _sandbox.on('message', function(data) {
+			if(data.trigger === "temperature" && socket !== null) {
+		    	socket.emit('data', data);
+		    }
+
+		});
 
 		// @todo to make the webapp also update when other modules change the state of something you can use socket.emit to publish
 		// the new states to the webapp

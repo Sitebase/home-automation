@@ -1,6 +1,6 @@
 (function() {
 
-	var socket = io.connect('http://192.168.0.142');
+	var socket = io.connect('http://192.168.1.195');
 		  
 	/**function trigger() {
 	console.log('go do something');
@@ -20,13 +20,13 @@
 		if( data.type !== 'sensor' ) 
 			return;
 
-		var id = data.id;
+		var id = data.location;
 
 		if( $('#' + id).length > 0 ) { // Row item already exist, just update the values
 			var $row = $('#' + id);
-			$row.find('td:eq(2)').html( data.value );
+			$row.find('td:eq(2)').html( data.value[0] );
 		} else { // Row item does not yet exist
-			var html = '<tr id="' + id +  '"><td>' + data.name + '</td><td>' + data.source + '</td><td>' + data.value + '</td></tr>';
+			var html = '<tr id="' + id +  '"><td>' + data.label + '</td><td>' + data.location + '</td><td>' + data.value[0] + '</td></tr>';
 			$('#sensors tbody').append(html);
 		}
 
