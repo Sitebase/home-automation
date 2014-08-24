@@ -1,5 +1,5 @@
 (function() {
-	var server = "http://laptop1.lan";
+	var server = "http://server.lan";
 	var socket = io.connect( server );
 		  
 	/**function trigger() {
