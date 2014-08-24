@@ -14,6 +14,10 @@
 		socket.emit('message', data);
 	});
 
+	$('[data-triggerer]').on('click', function(e) {
+		$.get('http://server.lan:3000/api?type=test&trigger=helloworld');
+	});
+
 	socket.on('data', function (data) {
 
 		// Data must be of type sensor
