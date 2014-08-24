@@ -8,6 +8,7 @@
 	}*/
 
 	$('[data-trigger]').on('click', function(e) {
+		console.log('Clicked');
 		var data = $(this).data();
 		data.loation = 'mobile';
 		data.type = 'click';
@@ -15,6 +16,7 @@
 	});
 
 	$('[data-triggerer]').on('click', function(e) {
+		console.log('Clicked');
 		$.get('http://server.lan:3000/api?type=test&trigger=helloworld');
 	});
 
