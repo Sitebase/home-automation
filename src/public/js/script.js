@@ -1,6 +1,6 @@
 (function() {
 
-	var socket = io.connect('http://192.168.1.195');
+	var socket = io.connect('http://server.lan');
 		  
 	/**function trigger() {
 	console.log('go do something');
