@@ -36,3 +36,92 @@ sandbox.on('message', function( data ) {
 
 
 //render();
+
+
+
+
+////////////// SERIAL CONTROLLER
+var serialport = require("serialport");
+var SerialPort = serialport.SerialPort;
+
+var command = 'LEDON';
+var connected = false;
+// /dev/tty.usbmodemfa141
+// /dev/ttyACM0
+var serialPort = new SerialPort("/dev/ttyACM0", {
+  baudrate: 19200,
+  dataBits: 8,
+  parity: 'none',
+  stopBits: 1,
+  flowControl: false,
+  parser: serialport.parsers.readline("\r")
+});
+
+var is_available = false;
+
+serialPort.on("open", function () {
+  console.log('open');
+
+  serialPort.on('data', function(data) {
+      result = data.trim();
+      console.log('data received: ' + result);
+
+      if( result === 'yo' ) {
+        connected = true;
+      }
+
+      /*if (result === 'OK') {
+          console.log('command successful');
+      }
+      else {
+          console.log('command not successful');
+      }*/
+  });
+
+  setTimeout(function() {
+    serialPort.write(' '); // This will make the Arduino loop enter the Serial available condition    
+  }, 3000);
+  
+  serialPort.on('error', function (err) {
+      console.error("error", err);
+  });
+});
+
+sandbox.on('button1', function( data ) {
+
+	if( connected === false ) {
+		console.log('Not yet connected');
+	} else {
+		console.log('Ok we\'ll do it');
+
+		serialPort.write(command + '#', function(error) {
+	      // If error is undefined all is ok
+	      //console.log('err ' + err);
+	    });
+
+	    if(command == 'LEDON') {
+	      command = 'LEDOFF';
+	    } else {
+	      command = 'LEDON';
+	    }
+	}
+
+});
+
+/*setInterval(function() {
+  if(connected) {
+    if(command == 'LEDON') {
+      command = 'LEDOFF';
+    } else {
+      command = 'LEDON';
+    }
+
+    serialPort.write(command + '#', function(error) {
+      // If error is undefined all is ok
+      //console.log('err ' + err);
+    });
+
+  } else {
+    console.log('Not yet connected');
+  }
+}, 100);*/

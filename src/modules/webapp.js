@@ -18,6 +18,9 @@ function WebApp( sandbox, options ) {
 		socket.on('message', function (json) {
 			logger.debug('Message from webapp:', json);
 			_sandbox.emit('message', json);
+
+			// Also emit with trigger as emit string
+			_sandbox.emit(json.trigger, json);
 	    });
 
 	    _sandbox.on('message', function(data) {

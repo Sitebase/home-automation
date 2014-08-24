@@ -21,6 +21,7 @@
     "onoff": "latest",
     "stdio": "latest",
     "body-parser": "latest",
+    "serialport": "latest",
     "node-remote-events": "git+https://github.com/Sitebase/node-remote-events.git"
   },
   "scripts": {

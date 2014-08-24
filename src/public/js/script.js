@@ -1,6 +1,6 @@
 (function() {
-
-	var socket = io.connect('http://server.lan');
+	var server = "http://laptop1.lan";
+	var socket = io.connect( server );
 		  
 	/**function trigger() {
 	console.log('go do something');
@@ -17,7 +17,7 @@
 
 	$('[data-triggerer]').on('click', function(e) {
 		console.log('Clicked');
-		$.get('http://server.lan:3000/api?type=test&trigger=helloworld');
+		$.get(server + ':3000/api?type=click&trigger=button1');
 	});
 
 	socket.on('data', function (data) {
