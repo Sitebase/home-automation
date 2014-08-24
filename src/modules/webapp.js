@@ -54,6 +54,7 @@ app.get('/api', function(req, res){
 
 	if( isValidEvent(req.query) ) {
 		_sandbox.emit('message', req.query);
+		_sandbox.emit(req.query.trigger, json);
 		res.send('{"status": "ok"}');
 	} else {
 		res.send('{"status": "error"}');
@@ -71,6 +72,7 @@ app.post('/api', function(req, res){
 	
 	if( isValidEvent(req.query) ) {
 		_sandbox.emit('message', req.query);
+		_sandbox.emit(req.query.trigger, json);
 		res.send('{"status": "ok"}');
 	} else {
 		res.send('{"status": "error"}');
