@@ -17,11 +17,12 @@ function XBMC( sandbox, options ) {
 		host: '192.168.1.108',
 		port: 22,
 		username: 'wim',
-		password: '****',
+		password: '*****',
 		monitorCmd: 'tail -f /home/wim/.xbmc/temp/xbmc.log',
 		events: {
 			'movie.play': 'DVDPlayer\: Opening\:',
 			'movie.stop': 'thread end\: video_thread',
+			'airplay.play': 'Thread PAPlayer start',
 			//'audio.play': 'audio',
 			//'login': 'Accepted publickey'
 		}
@@ -40,11 +41,8 @@ function listen( connection ) {
 	connection.on('movie.stop', function( line ) {
 		trigger( 'movie.stop' );
 	});
-	connection.on('audio.play', function( line ) {
+	connection.on('airplay.play', function( line ) {
 		trigger( 'audio.play' );
-	});
-	connection.on('login', function( line ) {
-		trigger( 'ssh.login' );
 	});
 }
 

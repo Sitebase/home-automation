@@ -9,8 +9,8 @@ Device address overview
 | Mac Mini HTPC      | media.lan       | 3c:07:54:5f:de:eb | 192.168.1.112 |
 | Playstation        | playstation.lan | 28:0d:fc:db:0c:97 | 192.168.1.113 |
 | Digibox1           | digibox1.lan    | 68:63:59:24:b8:4b | 192.168.1.114 |
-|                    |                 |                   | 192.168.1.115 |
-|                    |                 |                   | 192.168.1.116 |
+| Server             | server.lan      | 00:1c:c4:43:eb:74 | 192.168.1.115 |
+| Server iLO         | server-ilo.lan  | 00:1c:c4:43:eb:75 | 192.168.1.116 |
 |                    |                 |                   | 192.168.1.117 |
 |                    |                 |                   | 192.168.1.118 |
 |                    |                 |                   | 192.168.1.119 |
@@ -63,3 +63,12 @@ This is the hosts file that can be used in the OpenWRT router.
 	192.168.1.132 ipad1.lan
 	192.168.1.132 www.ipad1.lan
 
+
+Case
+----
+http://be.farnell.com/pro-power/g17083ubk/case-19-abs-3u-black/dp/1526725
+
+Broadcast message through sonos speakers
+----------------------------------------
+* Generate audio file from text (echo "This is a test message" | espeak --stdin --stdout > myaudio.wav)
+* Send wav file to sonos speakers
