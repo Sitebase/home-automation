@@ -5,12 +5,12 @@ var _ = require('lodash');
 var sandbox = require('./lib/sandbox');
 
 var ops = stdio.getopt({
-    'modules': {key: 'm', args: 1, mandatory: true, description: 'What this option means'},
+    'modules': {key: 'm', args: 1, mandatory: false, description: 'What this option means'},
     'environment': {key: 'e', args: 1, mandatory: false, description: 'Environment'},
 });
 
 // Make array of modules option
-ops.modules = ops.modules.split(',');
+ops.modules = ops.modules ? ops.modules.split(',') : ['webapp'];
 
 logger.debug('Start modules');
 
