@@ -7,21 +7,15 @@
  * @todo burn red light when not connected and green when connected
  * 
  */
-var serialport = require('serialport'),
-	logger = require('../lib/logger'),
-	fs = require('fs'),
-	SerialPort = serialport.SerialPort;
+var logger = require('../lib/logger'),
+	api = require('node-embed-serial-api'),
 	_sandbox = null,
 	connection = null;
 
-// Arduino serial configuration
-var config = {
-	baudrate: 19200,
-	dataBits: 8,
-	parity: 'none',
-	stopBits: 1,
-	flowControl: false,
-	parser: serialport.parsers.readline("\r")
+var states = {
+	light13: false,
+	light12: false,
+	light11: false,
 }
 
 function Controller( sandbox, options )
@@ -30,61 +24,79 @@ function Controller( sandbox, options )
 	logger.debug('Start module Controller');
 	logger.debug('Controller config is', sandbox.config);
 
-
-	fs.exists(_sandbox.config.serial_controller, function(exists) {
-		if (exists) {
-			// Detect if embedded controller is connected
-			connection = new SerialPort(_sandbox.config.serial_controller, config);
-			connection.open(function (error) {
-				if( error ) {
-					logger.error(error.toString().replace('Error: ', ''));
-					logger.error('Connect the embbeded controller to USB');
-				} else {
-					init();
-				}
-			});
-		} else {
-			logger.debug('No embedded controller connected -> ' + _sandbox.config.serial_controller);
-		}
+	var device = new api({
+		baudrate: 115200
 	});
+
+	device.on('error', function( error ) {
+		console.log('ERROR:', error)
+	});
+
+
+	device.on('ready', function( error ) {
+
+		/*device.readAnalog(function( result ) {
+			console.log('Analog receive', result);
+		});*/
+
+		/*device.readDigital(function( result ) {
+			console.log('Digital receive', result);
+		});*/
+
+		device.on('digital.interrupt', function( result ) {
+			logger.debug('Digital interrupt received', result);
+			_sandbox.emit('button1');
+		});
+
+		listen( device );
+
+	});
+	device.connect('/dev/tty.usbmodemfa141');
 
 }
 
-/**
- * This will only be executed if the serial interface can be opened
- */
-function init() {
-
-	logger.debug('Connected with the embedded controller');
-
-	connection.on('data', function(data) {
-		result = data.trim();
-		console.log('data received: ' + result);
-
-		if( result === 'yo' ) {
-			connected = true;
-		}
-
-		/*if (result === 'OK') {
-		  console.log('command successful');
-		}
-		else {
-		  console.log('command not successful');
-		}*/
+function listen( device )
+{
+	var timer = null;
+	_sandbox.on('button1', function() {
+		states.light13 = !states.light13;
+		console.log('Button click 1');
+		device.writeDigital(13, (states.light13 ? 1 : 0));
 	});
 
-	setTimeout(function() {
-		connection.write(' '); // This will make the Arduino loop enter the Serial available condition    
-	}, 3000);
-
-	connection.on('error', function (err) {
-		console.error("error", err);
+	_sandbox.on('button2', function() {
+		states.light12 = !states.light12;
+		console.log('Button click 2');
+		device.writeDigital(12, (states.light12 ? 1 : 0));
 	});
 
+	_sandbox.on('button3', function() {
+		states.light11 = !states.light11;
+		console.log('Button click 3');
+		device.writeDigital(11, (states.light11 ? 1 : 0));
+	});
+
+	_sandbox.on('button4', function() {
+		device.writeDigital(11, 0);
+		device.writeDigital(12, 0);
+		device.writeDigital(13, 0);
+		clearInterval(timer);
+	});
+
+	_sandbox.on('button5', function() {
+		device.writeDigital(11, 1);
+		device.writeDigital(12, 1);
+		device.writeDigital(13, 1);
+	});
+
+	_sandbox.on('button6', function() {
+		clearInterval(timer);
+		timer = setInterval(function(){
+			device.writeDigital(11, Math.floor((Math.random() * 2)));
+			device.writeDigital(12, Math.floor((Math.random() * 2)));
+			device.writeDigital(13, Math.floor((Math.random() * 2)));
+		}, 400);
+	});
 }
-
-
-
-
 
 module.exports = Controller;
