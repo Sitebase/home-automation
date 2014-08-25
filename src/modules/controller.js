@@ -51,7 +51,7 @@ function Controller( sandbox, options )
 		listen( device );
 
 	});
-	device.connect('/dev/tty.usbmodemfa141');
+	device.connect(_sandbox.config.serial_controller);
 
 }
 
