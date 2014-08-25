@@ -68,4 +68,4 @@ Event object
 Daemon
 ------
 
-sudo forever start "src --modules webapp" -o logs.log
+sudo forever -d -v -o out.log -e error.log -l log.log src/index.js

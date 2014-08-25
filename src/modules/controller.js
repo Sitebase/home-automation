@@ -57,6 +57,7 @@ function Controller( sandbox, options )
 
 function listen( device )
 {
+	console.log('Start listen');
 	var timer = null;
 	_sandbox.on('button1', function() {
 		states.light13 = !states.light13;
