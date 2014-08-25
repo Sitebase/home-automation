@@ -1,11 +1,6 @@
 (function() {
-	var server = "http://server.lan";
+	var server = "http://" + document.location.hostname;
 	var socket = io.connect( server );
-		  
-	/**function trigger() {
-	console.log('go do something');
-	socket.emit('message', { my: 'data' });
-	}*/
 
 	$('[data-trigger]').on('click', function(e) {
 		console.log('Clicked');

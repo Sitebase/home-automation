@@ -1,0 +1,4 @@
+{
+	"server": "server.lan",
+	"serial_controller": "/dev/ttyACM0"
+}

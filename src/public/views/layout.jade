@@ -1,0 +1,30 @@
+doctype html
+html
+	head
+		title #{title}
+		link(rel="stylesheet", href="/css/flatty.css")
+		link(rel="stylesheet", href="/css/style.css")
+		script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js")
+		script(src="/js/bootstrap.min.js")
+		script(src="/socket.io/socket.io.js")
+		script(src="/js/pubsub.js")
+		script(src="/js/script.js")
+		meta(name="viewport", content="width=device-width", user-scalable="no")
+		block head
+	body(data-twttr-rendered='true')
+		header.navbar.navbar-static-top.bs-docs-nav(id='top', role='banner')
+			.navbar.navbar-default.navbar-fixed-top
+				.container
+					.navbar-header
+						button.navbar-toggle.collapsed(data-toggle='collapse', type='button', data-target='.bs-navbar-collapse')
+							span.sr-only Toggle navigation
+							span.icon-bar
+							span.icon-bar
+							span.icon-bar
+						a.navbar-brand(href='../') Home automation+
+					nav.collapse.navbar-collapse.bs-navbar-collapse
+						ul.nav.navbar-nav
+							each item in items
+								li
+									a(href='#{item.link}') #{item.label}
+		block content

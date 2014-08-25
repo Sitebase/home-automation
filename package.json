@@ -22,7 +22,9 @@
     "stdio": "latest",
     "body-parser": "latest",
     "serialport": "latest",
-    "node-remote-events": "git+https://github.com/Sitebase/node-remote-events.git"
+    "jade": "latest",
+    "node-remote-events": "git+https://github.com/Sitebase/node-remote-events.git",
+    "node-embed-serial-api": "git+https://github.com/Sitebase/node-embed-serial-api.git"
   },
   "scripts": {
     "start": "NODE_PATH=`pwd`/lib node run.js",

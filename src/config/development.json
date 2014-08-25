@@ -1,0 +1,4 @@
+{
+	"server": "laptop1.lan",
+	"serial_controller": "/dev/tty.usbmodemfa141"
+}
