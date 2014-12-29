@@ -24,7 +24,7 @@ function WebApp( sandbox, options ) {
 	    });
 
 	    _sandbox.on('message', function(data) {
-			if(data.trigger === "temperature" && socket !== null) {
+			if((data.trigger === "temperature" || data.type === "state") && socket !== null) {
 		    	socket.emit('data', data);
 		    }
 

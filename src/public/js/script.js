@@ -17,6 +17,17 @@
 
 	socket.on('data', function (data) {
 
+		if( data.type === 'state' )
+		{	
+			var el = $('[data-about="' + data.trigger + '"]');
+			if( data.value === true) {
+				el.removeClass('btn-danger').addClass('btn-success');
+			} else {
+				el.removeClass('btn-success').addClass('btn-danger');
+			}
+			return;
+		}
+
 		// Data must be of type sensor
 		if( data.type !== 'sensor' ) 
 			return;

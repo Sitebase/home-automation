@@ -21,7 +21,8 @@ Want to compile/use native modules then install node-gyp:
 
 Run
 ---
-node src --modules webapp,embedded,gpio
+	node src --modules webapp,embedded,gpio
+	node-dev src --modules webapp,beckhoff
 
 Raspberry console screen sleep
 ------------------------------
@@ -33,7 +34,7 @@ To wake the screen over SSH you can use following commands:
 Todo
 ----
 * Add simple page with links to different apps (couchpatato, Transmit, ...)
-
+* Add dev/production config (Beckhoff needs different source ID when running on the server)
 
 
  Example sensor value publish via socket.io

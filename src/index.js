@@ -25,6 +25,9 @@ sandbox.config = config;
 if( _.contains(ops.modules, 'webapp') )
 	var webapp = new require('./modules/webapp')(sandbox, {});
 
+if( _.contains(ops.modules, 'beckhoff') )
+	var beckhoff = new require('./modules/beckhoff')(sandbox, {});
+
 if( _.contains(ops.modules, 'embedded') )
 	var embedded = new require('./modules/embedded')(sandbox, {});
 

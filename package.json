@@ -11,20 +11,21 @@
     "home automation"
   ],
   "dependencies": {
-    "forever": "*",
+    "ads": "^0.1.4",
+    "body-parser": "latest",
+    "color": "latest",
     "colors": "*",
     "express": "*",
-    "socket.io": "*",
-    "mqtt": "*",
-    "color": "latest",
-    "lodash": "latest",
-    "onoff": "latest",
-    "stdio": "latest",
-    "body-parser": "latest",
-    "serialport": "latest",
+    "forever": "*",
     "jade": "latest",
+    "lodash": "latest",
+    "mqtt": "*",
+    "node-embed-serial-api": "git+https://github.com/Sitebase/node-embed-serial-api.git",
     "node-remote-events": "git+https://github.com/Sitebase/node-remote-events.git",
-    "node-embed-serial-api": "git+https://github.com/Sitebase/node-embed-serial-api.git"
+    "onoff": "latest",
+    "serialport": "latest",
+    "socket.io": "*",
+    "stdio": "latest"
   },
   "scripts": {
     "start": "NODE_PATH=`pwd`/lib node run.js",
