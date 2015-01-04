@@ -21,7 +21,7 @@ var options = {
     //OPTIONAL: (These are set by default) 
     //The tcp destination port
     //port: 27905,
-    verbose: false
+    verbose: false,
     //The ams source port
     //amsPortSource: 32905
     //The ams target port
@@ -100,9 +100,9 @@ function pulse( variable )
             propname: 'value',
             value: true
         };
-        console.log('WRITE', myHandle);
+        //console.log('WRITE', myHandle);
         _client.write(myHandle, function(err, handle) {
-            console.log('Written', err, handle);
+            //console.log('Written', err, handle);
         });
 }
 
