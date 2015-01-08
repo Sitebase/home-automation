@@ -8,7 +8,7 @@ var express = require('express'),
 function WebApp( sandbox, options ) {
 	_sandbox = sandbox;
 	logger.debug('Start module WebApp');
-	var port = options.port || 3000;
+	var port = options.port || 5000;
 	var server = app.listen(port, function() {
 	    logger.debug('Webapp Listening on port', server.address().port);
 	});
