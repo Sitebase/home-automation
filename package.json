@@ -25,7 +25,9 @@
     "onoff": "latest",
     "serialport": "latest",
     "socket.io": "*",
-    "stdio": "latest"
+    "stdio": "latest",
+    "discoverable": "git+https://github.com/sitebase/discoverable-node.git",
+    "mosca": "latest"
   },
   "scripts": {
     "start": "NODE_PATH=`pwd`/lib node run.js",

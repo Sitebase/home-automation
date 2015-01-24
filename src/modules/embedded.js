@@ -1,6 +1,9 @@
 var mqtt = require('mqtt');
 var logger = require('../lib/logger');
+var discoverable = require('discoverable-node');
 var _sandbox = null;
+
+discoverable.makeDiscoverable(['homeautomation']);
 
 function Construct( sandbox, options ) {
 	_sandbox = sandbox;

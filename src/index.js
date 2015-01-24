@@ -37,8 +37,8 @@ if( _.contains(ops.modules, 'gpio') )
 if( _.contains(ops.modules, 'xbmc') )
 	var xbmc = new require('./modules/xbmc')(sandbox, {});
 
-if( _.contains(ops.modules, 'openwrt') )
-	var xbmc = new require('./modules/openwrt')(sandbox, {});
+if( _.contains(ops.modules, 'mqtt') )
+	var mqtt = new require('./modules/mqtt')(sandbox, {});
 
 // Always load the controller module
 // What is home automation if you don't control anything?
