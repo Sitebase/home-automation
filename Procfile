@@ -1,1 +1,1 @@
-web: node src/index.js --modules webapp,beckhoff
+web: node src/index.js --modules webapp,mqtt
