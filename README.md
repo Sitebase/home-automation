@@ -1,5 +1,4 @@
-Pomo
-====
+I no longer use this project for my home automation. If you want to now more about my setup you can check out my blog post [DIY home automation foundation](https://www.sitebase.be/diy-home-automation-foundation/) that describes my current setup.
 
 Install NodeJS on Raspberry Pi
 ------------------------------
